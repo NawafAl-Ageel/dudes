@@ -8,9 +8,10 @@ import { createSessionToken, SESSION_COOKIE } from "@/lib/auth";
 import { slugify } from "@/lib/invite";
 
 export async function login(formData: FormData) {
-  const password = String(formData.get("password") ?? "");
+  const password = String(formData.get("password") ?? "").trim();
+  const expected = (process.env.ADMIN_PASSWORD ?? "").trim();
 
-  if (password !== process.env.ADMIN_PASSWORD) {
+  if (!expected || password !== expected) {
     redirect("/admin/login?error=1");
   }
 
