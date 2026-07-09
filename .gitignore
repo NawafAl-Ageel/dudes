@@ -49,3 +49,7 @@ next-env.d.ts
 # standalone landing-page project — merged into the main app's "/" route;
 # kept on disk as a separate reference copy, not part of this repo
 /Dudes-Landing-page
+
+# standalone feasibility study doc — merged into the main app's
+# /feasibility-study route; kept on disk as a reference copy
+/feasibility-study

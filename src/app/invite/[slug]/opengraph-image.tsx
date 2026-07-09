@@ -44,6 +44,15 @@ export default async function OpengraphImage({ params }: { params: Promise<{ slu
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+          <span
+            style={{
+              fontSize: "28px",
+              fontWeight: 400,
+              color: "#3f3f46",
+            }}
+          >
+            دودز كومباني
+          </span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logo} width={40} height={40} alt="" />
         </div>
