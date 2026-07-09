@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Invite {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  guestName        String
+  guestEmail       String?
+  meetingTitle     String
+  meetingDescription String
+  location         String
+  locationUrl      String?
+  startsAt         DateTime
+  endsAt           DateTime
+  expiresAt        DateTime
+  manuallyRevoked  Boolean  @default(false)
+  createdAt        DateTime @default(now())
+}
