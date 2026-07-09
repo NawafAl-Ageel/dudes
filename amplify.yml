@@ -1,0 +1,18 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - env | grep -e ADMIN_PASSWORD -e SESSION_SECRET -e DATABASE_URL -e DIRECT_URL -e NEXT_PUBLIC_SITE_URL -e PUBLISHABLE_KEY >> .env.production
+        - npx prisma generate
+        - npm run build
+  artifacts:
+    baseDirectory: .next
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
