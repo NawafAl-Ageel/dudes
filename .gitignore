@@ -45,3 +45,7 @@ next-env.d.ts
 # database
 /prisma/dev.db
 /prisma/dev.db-journal
+
+# standalone landing-page project — merged into the main app's "/" route;
+# kept on disk as a separate reference copy, not part of this repo
+/Dudes-Landing-page

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -10,9 +11,16 @@ const ibmPlexSansArabic = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://dudesco.com"),
-  title: "دودز كومباني",
-  description: "دعوات دودز كومباني",
+  title: "دودز كلوب — Dudes Club",
+  description: "براند ملابس رياضية سعودي للشباب. لسنا مجرد ملابس، نحن استراتيجية.",
 };
+
+const themeInitScript = `
+  try {
+    var stored = localStorage.getItem('theme');
+    document.documentElement.setAttribute('data-theme', stored === 'dark' ? 'dark' : 'light');
+  } catch (e) {}
+`;
 
 export default function RootLayout({
   children,
@@ -24,8 +32,14 @@ export default function RootLayout({
       lang="ar"
       dir="rtl"
       className={`${ibmPlexSansArabic.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col bg-bg text-ink">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
+        {children}
+      </body>
     </html>
   );
 }
