@@ -69,7 +69,7 @@ export function InviteCard({
           </div>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
             <dt className="text-xs font-medium tracking-wide text-zinc-500">الوقت</dt>
-            <dd className="mt-1 font-medium text-zinc-900" dir="ltr">
+            <dd className="mt-1 text-right font-medium text-zinc-900" dir="ltr">
               {timeFormatter.format(startsAt)} – {timeFormatter.format(endsAt)}
             </dd>
           </div>
@@ -84,7 +84,7 @@ export function InviteCard({
                 target="_blank"
                 rel="noopener noreferrer"
                 dir="ltr"
-                className="mt-1 block break-all text-sm text-blue-600 hover:underline"
+                className="mt-1 block break-all text-right text-sm text-blue-600 hover:underline"
               >
                 {locationUrl}
               </a>
