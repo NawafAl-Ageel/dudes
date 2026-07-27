@@ -28,3 +28,18 @@ model Invite {
   manuallyRevoked  Boolean  @default(false)
   createdAt        DateTime @default(now())
 }
+
+model SurveyResponse {
+  id                String   @id @default(cuid())
+  gender            String
+  favoriteItem      String
+  favoriteItemOther String?
+  singleBuyItem     String
+  singleBuyItemOther String?
+  purchaseFactor    String
+  priceRange        String
+  idealAddition     String?
+  missingFromMarket String?
+  email             String?
+  createdAt         DateTime @default(now())
+}
