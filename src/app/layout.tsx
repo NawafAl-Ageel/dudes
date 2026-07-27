@@ -11,8 +11,8 @@ const ibmPlexSansArabic = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://dudesco.com"),
-  title: "دودز كلوب — Dudes Club",
-  description: "براند ملابس رياضية سعودي للشباب. لسنا مجرد ملابس، نحن استراتيجية.",
+  title: "دودز كومباني — Dudes Company",
+  description: "شركة سعودية، علامات تجارية متعددة في الرياضة والتقنية.",
 };
 
 const themeInitScript = `
