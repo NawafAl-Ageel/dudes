@@ -71,10 +71,10 @@ export function InviteCard({
           </div>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
             <dt className="text-xs font-medium tracking-wide text-zinc-500">الوقت</dt>
-            <dd className="mt-1 flex items-center gap-2 font-medium text-zinc-900" dir="ltr">
-              <span className="rounded-lg bg-white px-2 py-1">{timeFormatter.format(startsAt)}</span>
+            <dd className="mt-1 flex items-center justify-end gap-2 font-medium text-zinc-900" dir="ltr">
+              <span>{timeFormatter.format(startsAt)}</span>
               <span className="text-zinc-300">–</span>
-              <span className="rounded-lg bg-white px-2 py-1">{timeFormatter.format(endsAt)}</span>
+              <span>{timeFormatter.format(endsAt)}</span>
             </dd>
           </div>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 sm:col-span-2">
