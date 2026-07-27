@@ -19,6 +19,7 @@ type InviteCardProps = {
 const dateFormatter = new Intl.DateTimeFormat("ar", {
   calendar: "gregory",
   numberingSystem: "latn",
+  timeZone: "Asia/Riyadh",
   weekday: "long",
   year: "numeric",
   month: "long",
@@ -28,6 +29,7 @@ const dateFormatter = new Intl.DateTimeFormat("ar", {
 const timeFormatter = new Intl.DateTimeFormat("ar", {
   calendar: "gregory",
   numberingSystem: "latn",
+  timeZone: "Asia/Riyadh",
   hour: "numeric",
   minute: "2-digit",
 });
@@ -69,8 +71,8 @@ export function InviteCard({
           </div>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4">
             <dt className="text-xs font-medium tracking-wide text-zinc-500">الوقت</dt>
-            <dd className="mt-1 text-right font-medium text-zinc-900" dir="ltr">
-              {timeFormatter.format(startsAt)} – {timeFormatter.format(endsAt)}
+            <dd className="mt-1 text-right font-medium text-zinc-900">
+              <bdi>{timeFormatter.format(startsAt)}</bdi> – <bdi>{timeFormatter.format(endsAt)}</bdi>
             </dd>
           </div>
           <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 sm:col-span-2">

@@ -1,14 +1,10 @@
 import { createEvent, type DateArray, type EventAttributes } from "ics";
 import type { Invite } from "@prisma/client";
+import { getRiyadhDateParts } from "./timezone";
 
 function toDateArray(date: Date): DateArray {
-  return [
-    date.getFullYear(),
-    date.getMonth() + 1,
-    date.getDate(),
-    date.getHours(),
-    date.getMinutes(),
-  ];
+  const { year, month, day, hour, minute } = getRiyadhDateParts(date);
+  return [year, month, day, hour, minute];
 }
 
 export function generateInviteIcs(invite: Invite, inviteUrl: string): string {

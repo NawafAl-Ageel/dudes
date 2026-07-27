@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { createSessionToken, SESSION_COOKIE } from "@/lib/auth";
 import { slugify } from "@/lib/invite";
+import { parseRiyadhDateTimeLocal } from "@/lib/timezone";
 
 export async function login(formData: FormData) {
   const password = String(formData.get("password") ?? "").trim();
@@ -67,9 +68,9 @@ export async function createInvite(formData: FormData) {
       meetingDescription,
       location,
       locationUrl: locationUrl || null,
-      startsAt: new Date(startsAt),
-      endsAt: new Date(endsAt),
-      expiresAt: new Date(expiresAt),
+      startsAt: parseRiyadhDateTimeLocal(startsAt),
+      endsAt: parseRiyadhDateTimeLocal(endsAt),
+      expiresAt: parseRiyadhDateTimeLocal(expiresAt),
     },
   });
 

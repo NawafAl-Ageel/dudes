@@ -9,6 +9,7 @@ import { createInvite, logout } from "./actions";
 const dateTimeFormatter = new Intl.DateTimeFormat("ar", {
   calendar: "gregory",
   numberingSystem: "latn",
+  timeZone: "Asia/Riyadh",
   dateStyle: "medium",
   timeStyle: "short",
 });
