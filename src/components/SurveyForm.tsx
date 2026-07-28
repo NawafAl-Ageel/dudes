@@ -3,35 +3,7 @@
 import { useState, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitSurvey } from "@/app/survey/actions";
-
-const ITEM_OPTIONS = [
-  "Oversized T-Shirt",
-  "Compression T-Shirt",
-  "Tank Top",
-  "Shorts",
-  "Joggers",
-  "Hoodie",
-  "Zip Jacket",
-  "Cap",
-  "شيء آخر",
-];
-
-const FACTOR_OPTIONS = [
-  "جودة القماش",
-  "التصميم",
-  "المقاس (Fit)",
-  "السعر",
-  "سمعة البراند",
-  "آراء الناس",
-];
-
-const PRICE_OPTIONS = [
-  "أقل من 80 ريال",
-  "80–99 ريال",
-  "100–119 ريال",
-  "120–149 ريال",
-  "أكثر من 150 ريال",
-];
+import { ITEM_OPTIONS, FACTOR_OPTIONS, PRICE_OPTIONS } from "@/lib/surveyOptions";
 
 type FormState = {
   gender: string;
@@ -42,7 +14,6 @@ type FormState = {
   purchaseFactor: string;
   priceRange: string;
   idealAddition: string;
-  missingFromMarket: string;
   email: string;
 };
 
@@ -55,7 +26,6 @@ const initialState: FormState = {
   purchaseFactor: "",
   priceRange: "",
   idealAddition: "",
-  missingFromMarket: "",
   email: "",
 };
 
@@ -179,27 +149,20 @@ export function SurveyForm() {
       ),
     },
     {
-      title: "خلك مبدع",
+      title: "خلك مبدع (اختياري)",
       subtitle:
-        "إذا تقدر تضيف قطعة أو ميزة لبراند رياضي مثالي، وش بتكون؟ وش الشيء اللي تتمنى تشوفه في براند رياضي للشباب وما حصلته إلى الآن؟",
+        "إذا تقدر تضيف قطعة أو ميزة لبراند رياضي مثالي، وش بتكون؟ لك الحرية، ولا تحس إنك ملزم تكتب شي.",
       valid: () => true,
       content: (
-        <div className="flex flex-col gap-4">
-          <textarea
-            value={form.idealAddition}
-            onChange={(e) => update({ idealAddition: e.target.value })}
-            placeholder="القطعة أو الميزة اللي تضيفها..."
-            rows={3}
-            className="rounded-xl border border-line bg-transparent px-4 py-3 text-sm outline-none focus:border-ink"
-          />
-          <textarea
-            value={form.missingFromMarket}
-            onChange={(e) => update({ missingFromMarket: e.target.value })}
-            placeholder="الشيء اللي ناقصك في براندات الشباب الرياضية..."
-            rows={3}
-            className="rounded-xl border border-line bg-transparent px-4 py-3 text-sm outline-none focus:border-ink"
-          />
-        </div>
+        <textarea
+          value={form.idealAddition}
+          onChange={(e) => update({ idealAddition: e.target.value })}
+          placeholder={
+            "مثال: مقاسات توصل XXL، ألوان أهدى، خامة أخف بالصيف، تعاون مع رياضي معروف...\n\nاكتب أي فكرة تخطر في بالك (اختياري)"
+          }
+          rows={5}
+          className="w-full rounded-xl border border-line bg-transparent px-4 py-3 text-sm outline-none focus:border-ink"
+        />
       ),
     },
     {
@@ -241,7 +204,6 @@ export function SurveyForm() {
             purchaseFactor: form.purchaseFactor,
             priceRange: form.priceRange,
             idealAddition: form.idealAddition,
-            missingFromMarket: form.missingFromMarket,
             email: form.email,
           });
           setSubmitted(true);

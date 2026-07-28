@@ -182,6 +182,18 @@ export default async function AdminPage({ searchParams }: PageProps) {
           </form>
         </div>
 
+        <nav className="flex w-fit items-center gap-1 rounded-full border border-zinc-200 bg-white p-1">
+          <span className="rounded-full bg-zinc-900 px-4 py-1.5 text-sm font-medium text-white">
+            الدعوات
+          </span>
+          <Link
+            href="/admin/survey"
+            className="rounded-full px-4 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100"
+          >
+            استبيان دودز كلوب
+          </Link>
+        </nav>
+
         <section className="grid grid-cols-2 gap-4 sm:grid-cols-3">
           <StatCard label="إجمالي الدعوات" value={total} icon={<TotalIcon />} />
           <StatCard label="دعوات سارية" value={activeCount} icon={<ActiveIcon />} />

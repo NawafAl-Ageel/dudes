@@ -11,7 +11,6 @@ export type SurveySubmission = {
   purchaseFactor: string;
   priceRange: string;
   idealAddition?: string;
-  missingFromMarket?: string;
   email?: string;
 };
 
@@ -36,7 +35,6 @@ export async function submitSurvey(data: SurveySubmission) {
       purchaseFactor: data.purchaseFactor,
       priceRange: data.priceRange,
       idealAddition: data.idealAddition || null,
-      missingFromMarket: data.missingFromMarket || null,
       email: data.email || null,
     },
   });
