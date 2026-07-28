@@ -9,6 +9,7 @@ export type SurveySubmission = {
   singleBuyItem: string;
   singleBuyItemOther?: string;
   purchaseFactor: string;
+  purchaseFactorOther?: string;
   priceRange: string;
   idealAddition?: string;
   email?: string;
@@ -33,6 +34,7 @@ export async function submitSurvey(data: SurveySubmission) {
       singleBuyItem: data.singleBuyItem,
       singleBuyItemOther: data.singleBuyItemOther || null,
       purchaseFactor: data.purchaseFactor,
+      purchaseFactorOther: data.purchaseFactorOther || null,
       priceRange: data.priceRange,
       idealAddition: data.idealAddition || null,
       email: data.email || null,

@@ -5,7 +5,7 @@ export const ITEM_OPTIONS = [
   "Shorts / شورت",
   "Joggers / بنطلون جوقر",
   "Hoodie / هودي",
-  "Zip Jacket / جاكيت زيب",
+  "Zip Jacket / جاكيت سحّاب",
   "Cap / كاب",
   "شيء آخر",
 ];
@@ -17,6 +17,7 @@ export const FACTOR_OPTIONS = [
   "السعر",
   "سمعة البراند",
   "آراء الناس",
+  "شيء آخر",
 ];
 
 export const PRICE_OPTIONS = [

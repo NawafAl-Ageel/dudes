@@ -37,6 +37,7 @@ model SurveyResponse {
   singleBuyItem     String
   singleBuyItemOther String?
   purchaseFactor    String
+  purchaseFactorOther String?
   priceRange        String
   idealAddition     String?
   missingFromMarket String?

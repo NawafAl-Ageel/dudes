@@ -12,6 +12,7 @@ type FormState = {
   singleBuyItem: string;
   singleBuyItemOther: string;
   purchaseFactor: string;
+  purchaseFactorOther: string;
   priceRange: string;
   idealAddition: string;
   email: string;
@@ -24,6 +25,7 @@ const initialState: FormState = {
   singleBuyItem: "",
   singleBuyItemOther: "",
   purchaseFactor: "",
+  purchaseFactorOther: "",
   priceRange: "",
   idealAddition: "",
   email: "",
@@ -128,13 +130,25 @@ export function SurveyForm() {
     },
     {
       title: "وش أهم شيء يخليك تشتري براند رياضي جديد؟",
-      valid: () => form.purchaseFactor !== "",
+      valid: () =>
+        form.purchaseFactor !== "" &&
+        (form.purchaseFactor !== "شيء آخر" || form.purchaseFactorOther.trim() !== ""),
       content: (
-        <OptionGrid
-          options={FACTOR_OPTIONS}
-          value={form.purchaseFactor}
-          onChange={(v) => update({ purchaseFactor: v })}
-        />
+        <div className="flex flex-col gap-4">
+          <OptionGrid
+            options={FACTOR_OPTIONS}
+            value={form.purchaseFactor}
+            onChange={(v) => update({ purchaseFactor: v })}
+          />
+          {form.purchaseFactor === "شيء آخر" && (
+            <input
+              value={form.purchaseFactorOther}
+              onChange={(e) => update({ purchaseFactorOther: e.target.value })}
+              placeholder="اكتب اقتراحك"
+              className="rounded-xl border border-line bg-transparent px-4 py-3 text-sm outline-none focus:border-ink"
+            />
+          )}
+        </div>
       ),
     },
     {
@@ -202,6 +216,7 @@ export function SurveyForm() {
             singleBuyItem: form.singleBuyItem,
             singleBuyItemOther: form.singleBuyItemOther,
             purchaseFactor: form.purchaseFactor,
+            purchaseFactorOther: form.purchaseFactorOther,
             priceRange: form.priceRange,
             idealAddition: form.idealAddition,
             email: form.email,
