@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { isInviteValid } from "@/lib/invite";
 import { InviteStatus } from "@/components/InviteStatus";
 import { InviteRowActions } from "@/components/admin/InviteRowActions";
+import { NavTab } from "@/components/admin/NavTab";
 import { createInvite, logout } from "./actions";
 
 const dateTimeFormatter = new Intl.DateTimeFormat("ar", {
@@ -183,15 +184,8 @@ export default async function AdminPage({ searchParams }: PageProps) {
         </div>
 
         <nav className="flex w-fit items-center gap-1 rounded-full border border-zinc-200 bg-white p-1">
-          <span className="rounded-full bg-zinc-900 px-4 py-1.5 text-sm font-medium text-white">
-            الدعوات
-          </span>
-          <Link
-            href="/admin/survey"
-            className="rounded-full px-4 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100"
-          >
-            استبيان دودز كلوب
-          </Link>
+          <NavTab href="/admin" label="الدعوات" active />
+          <NavTab href="/admin/survey" label="استبيان دودز كلوب" active={false} />
         </nav>
 
         <section className="grid grid-cols-2 gap-4 sm:grid-cols-3">

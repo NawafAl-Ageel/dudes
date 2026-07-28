@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { ITEM_OPTIONS, FACTOR_OPTIONS, PRICE_OPTIONS, normalizeItemLabel } from "@/lib/surveyOptions";
+import { NavTab } from "@/components/admin/NavTab";
 import { logout } from "../actions";
 
 export const dynamic = "force-dynamic";
@@ -166,15 +166,8 @@ export default async function AdminSurveyPage() {
         </div>
 
         <nav className="flex w-fit items-center gap-1 rounded-full border border-zinc-200 bg-white p-1">
-          <Link
-            href="/admin"
-            className="rounded-full px-4 py-1.5 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100"
-          >
-            الدعوات
-          </Link>
-          <span className="rounded-full bg-zinc-900 px-4 py-1.5 text-sm font-medium text-white">
-            استبيان دودز كلوب
-          </span>
+          <NavTab href="/admin" label="الدعوات" active={false} />
+          <NavTab href="/admin/survey" label="استبيان دودز كلوب" active />
         </nav>
 
         <section className="grid grid-cols-2 gap-4 sm:grid-cols-3">
