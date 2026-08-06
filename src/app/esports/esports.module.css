@@ -3,20 +3,11 @@
   --bg-raised: #140f22;
   --ink: #f4f2fa;
   --ink-soft: #b3abc9;
-  --ink-faint: #726a8c;
+  --ink-faint: #8e86a8;
   --line: #2a2245;
   --invert-bg: #7c5cff;
   --invert-ink: #ffffff;
   --accent: #7c5cff;
-}
-
-.scrollbarHide {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.scrollbarHide::-webkit-scrollbar {
-  display: none;
 }
 
 .legendLine {

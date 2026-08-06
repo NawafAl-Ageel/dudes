@@ -153,7 +153,7 @@ export default function EsportsPage() {
           height={70}
           className="h-10 w-auto object-contain object-right sm:h-12"
         />
-        <nav className="hidden items-center gap-8 text-sm text-ink-soft sm:flex">
+        <nav className="flex items-center gap-4 text-xs text-ink-soft sm:gap-8 sm:text-sm">
           <a href="#teams" className="transition-colors hover:text-ink">الفرق</a>
           <a href="#sectors" className="transition-colors hover:text-ink">القطاعات</a>
           <a href="#roles" className="transition-colors hover:text-ink">الفرص المتاحة</a>
@@ -368,11 +368,11 @@ export default function EsportsPage() {
                   </span>
                 </div>
 
-                <div className={`${styles.scrollbarHide} flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2`}>
+                <div className="flex flex-wrap justify-center gap-4">
                   {Array.from({ length: role.count }).map((_, seat) => (
                     <div
                       key={seat}
-                      className="relative shrink-0 snap-start overflow-hidden rounded-2xl bg-white"
+                      className="relative shrink-0 overflow-hidden rounded-2xl bg-white"
                       style={{ width: 132 }}
                     >
                       <span className="absolute top-2 right-2 z-10 rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-semibold text-white">
@@ -431,7 +431,7 @@ export default function EsportsPage() {
           <h2 className="text-3xl font-bold sm:text-5xl">المؤسسون</h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {founders.map((f, i) => (
             <Reveal key={f.name} delay={i * 0.06}>
               <div className="flex h-full flex-col rounded-2xl border border-line bg-bg-raised p-5">
