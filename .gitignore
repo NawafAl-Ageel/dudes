@@ -53,3 +53,7 @@ next-env.d.ts
 # standalone feasibility study doc — merged into the main app's
 # /feasibility-study route; kept on disk as a reference copy
 /feasibility-study
+
+# raw esports department assets — copied into public/assets/esports;
+# kept on disk as a reference copy, not part of this repo
+/dudes_esport

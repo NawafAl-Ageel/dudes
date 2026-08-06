@@ -3,6 +3,20 @@ import { SESSION_COOKIE, isValidSessionToken } from "@/lib/auth";
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const hostname = request.headers.get("host") ?? "";
+
+  if (hostname.startsWith("esports.")) {
+    if (!pathname.startsWith("/esports")) {
+      const url = request.nextUrl.clone();
+      url.pathname = `/esports${pathname === "/" ? "" : pathname}`;
+      return NextResponse.rewrite(url);
+    }
+    return NextResponse.next();
+  }
+
+  if (!pathname.startsWith("/admin")) {
+    return NextResponse.next();
+  }
 
   if (pathname === "/admin/login") {
     return NextResponse.next();
@@ -20,5 +34,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/((?!_next/|.*\\..*).*)"],
 };

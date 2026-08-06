@@ -1,0 +1,28 @@
+.esports {
+  --bg: #0a0714;
+  --bg-raised: #140f22;
+  --ink: #f4f2fa;
+  --ink-soft: #b3abc9;
+  --ink-faint: #726a8c;
+  --line: #2a2245;
+  --invert-bg: #7c5cff;
+  --invert-ink: #ffffff;
+  --accent: #7c5cff;
+}
+
+.scrollbarHide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbarHide::-webkit-scrollbar {
+  display: none;
+}
+
+.legendLine {
+  text-wrap: balance;
+}
+
+.logoGlow {
+  filter: drop-shadow(0 0 40px rgba(124, 92, 255, 0.35));
+}
