@@ -76,39 +76,46 @@ function AcademyIcon() {
   );
 }
 
-function SeatRow({
-  count,
+function SeatCard({
   image,
   alt,
   size,
   muted,
 }: {
-  count: number;
   image: string;
   alt: string;
   size: number;
   muted?: boolean;
 }) {
   return (
+    <div
+      className={`relative shrink-0 overflow-hidden rounded-xl bg-[var(--seat-bg)] ${muted ? "opacity-80" : ""}`}
+      style={{ width: size }}
+    >
+      <span className="absolute top-1.5 right-1.5 z-10 rounded-full bg-[var(--accent)] px-1.5 py-0.5 text-[8px] font-semibold text-white">
+        مقعد شاغر
+      </span>
+      <Image
+        src={image}
+        alt={alt}
+        width={size}
+        height={size}
+        className="object-cover object-top"
+        style={{ width: size, height: size * 1.21 }}
+      />
+    </div>
+  );
+}
+
+function SeatRow({
+  seats,
+}: {
+  seats: { image: string; alt: string; size: number; muted?: boolean }[];
+}) {
+  return (
     <div className="flex flex-nowrap justify-center gap-2 overflow-x-auto sm:justify-start">
-      {Array.from({ length: count }).map((_, seat) => (
-        <div
-          key={seat}
-          className={`relative shrink-0 overflow-hidden rounded-xl bg-[var(--seat-bg)] ${muted ? "opacity-80" : ""}`}
-          style={{ width: size }}
-        >
-          <span className="absolute top-1.5 right-1.5 z-10 rounded-full bg-[var(--accent)] px-1.5 py-0.5 text-[8px] font-semibold text-white">
-            مقعد شاغر
-          </span>
-          <Image
-            src={image}
-            alt={alt}
-            width={size}
-            height={size}
-            className="object-cover object-top"
-            style={{ width: size, height: size * 1.21 }}
-          />
-        </div>
+      {seats.map((seat, i) => (
+        <SeatCard key={i} {...seat} />
       ))}
     </div>
   );
@@ -415,28 +422,24 @@ export default function EsportsPage() {
                 </div>
 
                 <div className="flex-1">
-                  {role.groups ? (
-                    <div className="flex flex-col items-center gap-8 sm:items-start">
-                      {role.groups.map((group) => (
-                        <div key={group.label} className="flex flex-col items-center gap-3 sm:items-start">
-                          <p className="text-xs font-semibold tracking-[0.15em] text-ink-faint uppercase">
-                            {group.label}
-                          </p>
-                          <SeatRow
-                            count={group.count}
-                            image={role.image}
-                            alt={role.title}
-                            size={group.label === "الاحتياط" ? 76 : 96}
-                            muted={group.label === "الاحتياط"}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="flex justify-center sm:justify-start">
-                      <SeatRow count={role.count ?? 0} image={role.image} alt={role.title} size={96} />
-                    </div>
-                  )}
+                  <SeatRow
+                    seats={
+                      role.groups
+                        ? role.groups.flatMap((group) =>
+                            Array.from({ length: group.count }).map(() => ({
+                              image: role.image,
+                              alt: role.title,
+                              size: group.label === "الاحتياط" ? 76 : 96,
+                              muted: group.label === "الاحتياط",
+                            }))
+                          )
+                        : Array.from({ length: role.count ?? 0 }).map(() => ({
+                            image: role.image,
+                            alt: role.title,
+                            size: 96,
+                          }))
+                    }
+                  />
                 </div>
               </div>
             </Reveal>
