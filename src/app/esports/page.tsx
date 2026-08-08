@@ -94,7 +94,7 @@ function SeatRow({
       {Array.from({ length: count }).map((_, seat) => (
         <div
           key={seat}
-          className={`relative shrink-0 overflow-hidden rounded-2xl bg-white ${muted ? "opacity-80" : ""}`}
+          className={`relative shrink-0 overflow-hidden rounded-2xl bg-[var(--seat-bg)] ${muted ? "opacity-80" : ""}`}
           style={{ width: size }}
         >
           <span className="absolute top-2 right-2 z-10 rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-semibold text-white">
