@@ -90,14 +90,14 @@ function SeatRow({
   muted?: boolean;
 }) {
   return (
-    <div className="flex flex-wrap justify-center gap-3">
+    <div className="flex flex-nowrap justify-center gap-2 overflow-x-auto sm:justify-start">
       {Array.from({ length: count }).map((_, seat) => (
         <div
           key={seat}
-          className={`relative shrink-0 overflow-hidden rounded-2xl bg-[var(--seat-bg)] ${muted ? "opacity-80" : ""}`}
+          className={`relative shrink-0 overflow-hidden rounded-xl bg-[var(--seat-bg)] ${muted ? "opacity-80" : ""}`}
           style={{ width: size }}
         >
-          <span className="absolute top-2 right-2 z-10 rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-semibold text-white">
+          <span className="absolute top-1.5 right-1.5 z-10 rounded-full bg-[var(--accent)] px-1.5 py-0.5 text-[8px] font-semibold text-white">
             مقعد شاغر
           </span>
           <Image
@@ -426,7 +426,7 @@ export default function EsportsPage() {
                             count={group.count}
                             image={role.image}
                             alt={role.title}
-                            size={group.label === "الاحتياط" ? 104 : 132}
+                            size={group.label === "الاحتياط" ? 76 : 96}
                             muted={group.label === "الاحتياط"}
                           />
                         </div>
@@ -434,7 +434,7 @@ export default function EsportsPage() {
                     </div>
                   ) : (
                     <div className="flex justify-center sm:justify-start">
-                      <SeatRow count={role.count ?? 0} image={role.image} alt={role.title} size={132} />
+                      <SeatRow count={role.count ?? 0} image={role.image} alt={role.title} size={96} />
                     </div>
                   )}
                 </div>
