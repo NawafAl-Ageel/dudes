@@ -400,39 +400,44 @@ export default function EsportsPage() {
           </p>
         </Reveal>
 
-        <div className="mt-16 flex flex-col gap-14">
+        <div className="mt-16 flex flex-col gap-6">
           {roles.map((role, i) => (
             <Reveal key={role.title} delay={i * 0.08}>
-              <div>
-                <div className="mb-4 flex items-center justify-center gap-2">
-                  {role.gameIcon && (
-                    <Image src={role.gameIcon} alt={role.game ?? ""} width={24} height={24} />
-                  )}
-                  <h3 className="text-lg font-bold">{role.title}</h3>
+              <div className="flex flex-col gap-6 rounded-3xl border border-line bg-bg-raised p-6 sm:flex-row-reverse sm:items-center sm:gap-8 sm:p-8">
+                <div className="flex shrink-0 flex-col items-center text-center sm:w-52 sm:items-start sm:text-right">
+                  <div className="flex items-center gap-2">
+                    {role.gameIcon && (
+                      <Image src={role.gameIcon} alt={role.game ?? ""} width={24} height={24} />
+                    )}
+                    <h3 className="text-lg font-bold">{role.title}</h3>
+                  </div>
+                  <p className="mt-2 text-sm text-ink-faint">{role.pitch}</p>
                 </div>
 
-                {role.groups ? (
-                  <div className="flex flex-col items-center gap-8">
-                    {role.groups.map((group) => (
-                      <div key={group.label} className="flex flex-col items-center gap-3">
-                        <p className="text-xs font-semibold tracking-[0.15em] text-ink-faint uppercase">
-                          {group.label}
-                        </p>
-                        <SeatRow
-                          count={group.count}
-                          image={role.image}
-                          alt={role.title}
-                          size={group.label === "الاحتياط" ? 104 : 132}
-                          muted={group.label === "الاحتياط"}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                ) : (
-                  <SeatRow count={role.count ?? 0} image={role.image} alt={role.title} size={132} />
-                )}
-
-                <p className="mt-3 text-center text-sm text-ink-faint">{role.pitch}</p>
+                <div className="flex-1">
+                  {role.groups ? (
+                    <div className="flex flex-col items-center gap-8 sm:items-start">
+                      {role.groups.map((group) => (
+                        <div key={group.label} className="flex flex-col items-center gap-3 sm:items-start">
+                          <p className="text-xs font-semibold tracking-[0.15em] text-ink-faint uppercase">
+                            {group.label}
+                          </p>
+                          <SeatRow
+                            count={group.count}
+                            image={role.image}
+                            alt={role.title}
+                            size={group.label === "الاحتياط" ? 104 : 132}
+                            muted={group.label === "الاحتياط"}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex justify-center sm:justify-start">
+                      <SeatRow count={role.count ?? 0} image={role.image} alt={role.title} size={132} />
+                    </div>
+                  )}
+                </div>
               </div>
             </Reveal>
           ))}
