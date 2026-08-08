@@ -56,13 +56,13 @@ function TrophyIcon() {
   );
 }
 
-function HandshakeIcon() {
+function TeamIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 11l4-4 4 3 3-3 3 2" />
-      <path d="M17 9l4 2-4 6-3-2" />
-      <path d="M7 10l-4 3 3 5 3-1" />
-      <path d="M10 13l2 2 3-2" />
+      <circle cx="9" cy="8" r="3" />
+      <circle cx="17" cy="9" r="2.4" />
+      <path d="M3.5 19c0-3 2.5-5.5 5.5-5.5s5.5 2.5 5.5 5.5" />
+      <path d="M15 14.2c2.3.3 4 2.2 4 4.8" />
     </svg>
   );
 }
@@ -79,7 +79,7 @@ function AcademyIcon() {
 const coreSectors = [
   { icon: <MediaIcon />, title: "الإعلام وصناعة المحتوى", desc: "المحتوى المرئي، البثوث المباشرة، والتحليل." },
   { icon: <TrophyIcon />, title: "تنظيم البطولات", desc: "إدارة وتنظيم البطولات التنافسية." },
-  { icon: <HandshakeIcon />, title: "إدارة الفرق والرعايات", desc: "إدارة الفرق التنافسية والرعايات والشراكات." },
+  { icon: <TeamIcon />, title: "إدارة الفرق والرعايات", desc: "إدارة الفرق التنافسية والرعايات والشراكات." },
   { icon: <AcademyIcon />, title: "الأكاديميات والتدريب", desc: "برامج تدريب وتطوير المواهب." },
 ];
 
@@ -98,7 +98,6 @@ const roles = [
     gameIcon: "/assets/esports/overwatch.webp",
     title: "فريق Overwatch",
     count: 7,
-    seatLabel: "7 مقاعد شاغرة",
     image: "/assets/esports/anonymous_player.png",
     pitch: "الفريق الأساسي يتبنى من الصفر.",
   },
@@ -107,7 +106,6 @@ const roles = [
     gameIcon: "/assets/esports/rocket-league-96.png",
     title: "لاعب Rocket League",
     count: 1,
-    seatLabel: "مقعد واحد شاغر",
     image: "/assets/esports/anonymous_player.png",
     pitch: "مقعد واحد، يمثّل الفريق بالكامل.",
   },
@@ -116,7 +114,6 @@ const roles = [
     gameIcon: null,
     title: "الستريمرز",
     count: 5,
-    seatLabel: "5 مقاعد شاغرة",
     image: "/assets/esports/anonymous_streamer.png",
     pitch: "صوت الفريق قبل أول بطولة.",
   },
@@ -125,21 +122,12 @@ const roles = [
     gameIcon: null,
     title: "المحللين",
     count: 2,
-    seatLabel: "مقعدين شاغرين",
     image: "/assets/esports/anonymous_analyst.png",
     pitch: "الفريق اللي ياخذ اللعبة بجدية يحتاج عقول تحلل، مو بس تلعب.",
   },
 ];
 
-const founders = [
-  { name: "عبدالإله بندر العويد", title: "Chief Executive Officer (CEO)", focus: "الإشراف العام، القرارات الاستراتيجية، وإدارة العلاقات والشراكات." },
-  { name: "نواف صالح العقيل", title: "Partnerships & IT", focus: "إدارة الرعايات والشراكات، والإشراف على تقنية المعلومات والأنظمة." },
-  { name: "سليمان حسين مسعد", title: "Media & Content", focus: "إدارة المحتوى والإعلام، والإشراف على الإنتاج الإعلامي." },
-  { name: "عبدالله عمر العتيبي", title: "Tournaments & Competitive Teams", focus: "إدارة البطولات والإشراف على الفرق التنافسية." },
-  { name: "عبدالرحمن السيف", title: "Tournaments & Competitive Teams", focus: "إدارة البطولات، وتطوير وإدارة الفرق التنافسية." },
-];
-
-const CTA_EMAIL = "esports@dudesco.com";
+const CTA_EMAIL = "nightmare@dudesco.com";
 
 export default function EsportsPage() {
   return (
@@ -327,9 +315,9 @@ export default function EsportsPage() {
           <p className="text-xs font-semibold tracking-[0.3em] text-ink-faint uppercase">الألعاب اللي نتنافس فيها</p>
           <div className="flex items-center gap-10">
             <div className="flex items-center gap-2">
-              <Image src="/assets/esports/overwatch.webp" alt="Overwatch" width={32} height={32} />
+              <Image src="/assets/esports/overwatch.webp" alt="Overwatch 2" width={32} height={32} />
               <span className="text-sm font-medium text-ink-soft">
-                <bdi>Overwatch</bdi>
+                <bdi>Overwatch 2</bdi>
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -338,6 +326,15 @@ export default function EsportsPage() {
                 <bdi>Rocket League</bdi>
               </span>
             </div>
+          </div>
+          <div className="flex items-center gap-3 text-xs text-ink-faint">
+            <span>نخطط للتوسع إلى</span>
+            <span className="rounded-full border border-line px-3 py-1">
+              <bdi>CS:GO</bdi>
+            </span>
+            <span className="rounded-full border border-line px-3 py-1">
+              <bdi>Valorant</bdi>
+            </span>
           </div>
         </div>
       </section>
@@ -356,16 +353,11 @@ export default function EsportsPage() {
           {roles.map((role, i) => (
             <Reveal key={role.title} delay={i * 0.08}>
               <div>
-                <div className="mb-4 flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-2">
-                    {role.gameIcon && (
-                      <Image src={role.gameIcon} alt={role.game ?? ""} width={24} height={24} />
-                    )}
-                    <h3 className="text-lg font-bold">{role.title}</h3>
-                  </div>
-                  <span className="shrink-0 rounded-full border border-line px-3 py-1 text-xs font-medium text-ink-soft">
-                    {role.seatLabel}
-                  </span>
+                <div className="mb-4 flex items-center justify-center gap-2">
+                  {role.gameIcon && (
+                    <Image src={role.gameIcon} alt={role.game ?? ""} width={24} height={24} />
+                  )}
+                  <h3 className="text-lg font-bold">{role.title}</h3>
                 </div>
 
                 <div className="flex flex-wrap justify-center gap-4">
@@ -389,7 +381,7 @@ export default function EsportsPage() {
                   ))}
                 </div>
 
-                <p className="mt-3 text-sm text-ink-faint">{role.pitch}</p>
+                <p className="mt-3 text-center text-sm text-ink-faint">{role.pitch}</p>
               </div>
             </Reveal>
           ))}
@@ -421,28 +413,6 @@ export default function EsportsPage() {
               لها، مو مجرد حساب سوشيال ميديا.
             </p>
           </Reveal>
-        </div>
-      </section>
-
-      {/* ---------------- FOUNDERS ---------------- */}
-      <section className="relative mx-auto max-w-5xl px-6 py-24">
-        <Reveal className="mb-14 text-center">
-          <p className="mb-3 text-xs font-semibold tracking-[0.3em] text-ink-soft uppercase">القيادة</p>
-          <h2 className="text-3xl font-bold sm:text-5xl">المؤسسون</h2>
-        </Reveal>
-
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-          {founders.map((f, i) => (
-            <Reveal key={f.name} delay={i * 0.06}>
-              <div className="flex h-full flex-col rounded-2xl border border-line bg-bg-raised p-5">
-                <p className="font-semibold">{f.name}</p>
-                <p className="mt-1 text-xs font-medium tracking-wide text-[var(--accent)]">
-                  <bdi>{f.title}</bdi>
-                </p>
-                <p className="mt-3 text-xs leading-relaxed text-ink-faint">{f.focus}</p>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </section>
 

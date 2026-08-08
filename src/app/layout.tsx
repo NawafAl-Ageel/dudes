@@ -4,9 +4,11 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const ibmPlexSansArabic = localFont({
-  src: "../fonts/IBMPlexArabic-Text.ttf",
+  src: [
+    { path: "../fonts/IBMPlexArabic-Text.ttf", weight: "400", style: "normal" },
+    { path: "../fonts/IBMPlexArabic-Bold.ttf", weight: "700", style: "normal" },
+  ],
   variable: "--font-ibm-plex-sans-arabic",
-  weight: "400",
 });
 
 export const metadata: Metadata = {

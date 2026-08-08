@@ -1,0 +1,6 @@
+@media print {
+  .guide {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
