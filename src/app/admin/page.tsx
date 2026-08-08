@@ -186,6 +186,7 @@ export default async function AdminPage({ searchParams }: PageProps) {
         <nav className="flex w-fit items-center gap-1 rounded-full border border-zinc-200 bg-white p-1">
           <NavTab href="/admin" label="الدعوات" active />
           <NavTab href="/admin/survey" label="استبيان دودز كلوب" active={false} />
+          <NavTab href="/admin/esports" label="طلبات Nightmare" active={false} />
         </nav>
 
         <section className="grid grid-cols-2 gap-4 sm:grid-cols-3">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Reveal } from "@/components/Reveal";
+import { ApplyButton } from "@/components/esports/ApplyButton";
 import styles from "./esports.module.css";
 
 export const metadata: Metadata = {
@@ -204,12 +205,10 @@ export default function EsportsPage() {
           <a href="#sectors" className="transition-colors hover:text-ink">القطاعات</a>
           <a href="#roles" className="transition-colors hover:text-ink">الفرص المتاحة</a>
         </nav>
-        <a
-          href={`mailto:${CTA_EMAIL}`}
+        <ApplyButton
+          label="قدّم الآن"
           className="rounded-full bg-cta px-4 py-2 text-xs font-semibold tracking-wide text-cta-ink transition-transform hover:scale-105"
-        >
-          قدّم الآن
-        </a>
+        />
       </header>
 
       {/* ---------------- HERO ---------------- */}
@@ -240,12 +239,10 @@ export default function EsportsPage() {
 
         <Reveal delay={0.4}>
           <div className="relative z-10 mt-10 flex flex-wrap items-center justify-center gap-4">
-            <a
-              href={`mailto:${CTA_EMAIL}`}
+            <ApplyButton
+              label="قدّم الآن"
               className="rounded-full bg-cta px-7 py-3 text-sm font-semibold text-cta-ink transition-transform hover:scale-105"
-            >
-              قدّم الآن
-            </a>
+            />
             <a
               href="#roles"
               className="rounded-full border border-line px-7 py-3 text-sm font-semibold text-ink transition-colors hover:border-ink-soft"
@@ -447,12 +444,10 @@ export default function EsportsPage() {
         </div>
 
         <Reveal delay={0.2} className="mt-16 text-center">
-          <a
-            href={`mailto:${CTA_EMAIL}`}
+          <ApplyButton
+            label="قدّم الآن"
             className="inline-flex rounded-full bg-cta px-7 py-3 text-sm font-semibold text-cta-ink transition-transform hover:scale-105"
-          >
-            قدّم الآن
-          </a>
+          />
         </Reveal>
       </section>
 
@@ -486,14 +481,17 @@ export default function EsportsPage() {
             راسلنا وخلك أول اسم يُكتب في سجل <bdi>Nightmare Esports Organization</bdi>.
           </p>
           <div className="mt-10">
-            <a
-              href={`mailto:${CTA_EMAIL}`}
-              dir="ltr"
+            <ApplyButton
+              label="قدّم الآن"
               className="inline-flex rounded-full bg-cta px-8 py-3.5 text-sm font-semibold text-cta-ink transition-transform hover:scale-105"
-            >
+            />
+          </div>
+          <p className="mt-5 text-xs text-ink-faint">
+            أو راسلنا مباشرة على{" "}
+            <a href={`mailto:${CTA_EMAIL}`} dir="ltr" className="text-[var(--accent)] hover:underline">
               {CTA_EMAIL}
             </a>
-          </div>
+          </p>
         </Reveal>
       </section>
 

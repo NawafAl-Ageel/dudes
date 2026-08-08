@@ -89,6 +89,14 @@ export default function CreatorGuidePage() {
           </p>
         </header>
 
+        <div className="mt-10 rounded-2xl border border-[var(--accent)]/40 bg-[var(--accent)]/10 p-5 text-center">
+          <p className="text-sm font-semibold text-ink">هذا المستند غير رسمي وغير ملزم قانونيًا</p>
+          <p className="mt-1 text-xs leading-relaxed text-ink-soft">
+            هو مجرد خطوة تمهيدية للتعارف على طريقة عمل المنظمة. أي حقوق أو التزامات فعلية تكون فقط
+            ضمن عقد التعاون الرسمي الموقّع بين الطرفين.
+          </p>
+        </div>
+
         <div className="mt-16">
           <Section title="من نحن؟">
             <p>
