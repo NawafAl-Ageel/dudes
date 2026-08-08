@@ -76,6 +76,44 @@ function AcademyIcon() {
   );
 }
 
+function SeatRow({
+  count,
+  image,
+  alt,
+  size,
+  muted,
+}: {
+  count: number;
+  image: string;
+  alt: string;
+  size: number;
+  muted?: boolean;
+}) {
+  return (
+    <div className="flex flex-wrap justify-center gap-3">
+      {Array.from({ length: count }).map((_, seat) => (
+        <div
+          key={seat}
+          className={`relative shrink-0 overflow-hidden rounded-2xl bg-white ${muted ? "opacity-80" : ""}`}
+          style={{ width: size }}
+        >
+          <span className="absolute top-2 right-2 z-10 rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-semibold text-white">
+            مقعد شاغر
+          </span>
+          <Image
+            src={image}
+            alt={alt}
+            width={size}
+            height={size}
+            className="object-cover object-top"
+            style={{ width: size, height: size * 1.21 }}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 const coreSectors = [
   { icon: <MediaIcon />, title: "الإعلام وصناعة المحتوى", desc: "المحتوى المرئي، البثوث المباشرة، والتحليل." },
   { icon: <TrophyIcon />, title: "تنظيم البطولات", desc: "إدارة وتنظيم البطولات التنافسية." },
@@ -92,12 +130,25 @@ const extraSectors = [
   "إنتاج مقابلات اللاعبين",
 ];
 
-const roles = [
+type Role = {
+  game: string | null;
+  gameIcon: string | null;
+  title: string;
+  image: string;
+  pitch: string;
+  count?: number;
+  groups?: { label: string; count: number }[];
+};
+
+const roles: Role[] = [
   {
     game: "Overwatch",
     gameIcon: "/assets/esports/overwatch.webp",
     title: "فريق Overwatch",
-    count: 7,
+    groups: [
+      { label: "التشكيلة الأساسية", count: 5 },
+      { label: "الاحتياط", count: 2 },
+    ],
     image: "/assets/esports/anonymous_player.png",
     pitch: "الفريق الأساسي يتبنى من الصفر.",
   },
@@ -360,26 +411,26 @@ export default function EsportsPage() {
                   <h3 className="text-lg font-bold">{role.title}</h3>
                 </div>
 
-                <div className="flex flex-wrap justify-center gap-4">
-                  {Array.from({ length: role.count }).map((_, seat) => (
-                    <div
-                      key={seat}
-                      className="relative shrink-0 overflow-hidden rounded-2xl bg-white"
-                      style={{ width: 132 }}
-                    >
-                      <span className="absolute top-2 right-2 z-10 rounded-full bg-[var(--accent)] px-2 py-0.5 text-[10px] font-semibold text-white">
-                        مقعد شاغر
-                      </span>
-                      <Image
-                        src={role.image}
-                        alt={role.title}
-                        width={132}
-                        height={132}
-                        className="h-[160px] w-[132px] object-cover object-top"
-                      />
-                    </div>
-                  ))}
-                </div>
+                {role.groups ? (
+                  <div className="flex flex-col items-center gap-8">
+                    {role.groups.map((group) => (
+                      <div key={group.label} className="flex flex-col items-center gap-3">
+                        <p className="text-xs font-semibold tracking-[0.15em] text-ink-faint uppercase">
+                          {group.label}
+                        </p>
+                        <SeatRow
+                          count={group.count}
+                          image={role.image}
+                          alt={role.title}
+                          size={group.label === "الاحتياط" ? 104 : 132}
+                          muted={group.label === "الاحتياط"}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <SeatRow count={role.count ?? 0} image={role.image} alt={role.title} size={132} />
+                )}
 
                 <p className="mt-3 text-center text-sm text-ink-faint">{role.pitch}</p>
               </div>
