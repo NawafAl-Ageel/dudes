@@ -6,6 +6,12 @@ export async function proxy(request: NextRequest) {
   const hostname = request.headers.get("host") ?? "";
 
   if (hostname.startsWith("esports.")) {
+    const url = request.nextUrl.clone();
+    url.hostname = hostname.replace(/^esports\./, "nightmare.");
+    return NextResponse.redirect(url, 301);
+  }
+
+  if (hostname.startsWith("nightmare.")) {
     if (!pathname.startsWith("/esports")) {
       const url = request.nextUrl.clone();
       url.pathname = `/esports${pathname === "/" ? "" : pathname}`;
