@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import styles from "./guide.module.css";
 
 export const metadata: Metadata = {
   title: "Creator Partnership Guide — Nightmare Esports Organization",
   robots: { index: false, follow: false },
 };
+
+// Casual gate: this page is only meant to be reached via the exact link
+// shared with a prospective partner. Anyone opening the bare path without
+// the key (e.g. by guessing/typing it) gets a normal 404 instead of the
+// document. This is not real security — a shared link can always be
+// forwarded — just a way to keep it from being stumbled into.
+const ACCESS_KEY = "qStPyKwOWRwz";
 
 const toc = [
   { id: "s1", num: "أولاً", title: "من نحن؟" },
@@ -20,7 +28,16 @@ const toc = [
   { id: "s10", num: "عاشراً", title: "الخطوة التالية" },
 ];
 
-export default function CreatorGuidePage() {
+type PageProps = {
+  searchParams: Promise<{ key?: string }>;
+};
+
+export default async function UnofficialContractPage({ searchParams }: PageProps) {
+  const { key } = await searchParams;
+  if (key !== ACCESS_KEY) {
+    notFound();
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.page}>
