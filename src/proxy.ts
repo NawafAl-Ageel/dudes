@@ -8,6 +8,7 @@ export async function proxy(request: NextRequest) {
   if (hostname.startsWith("esports.")) {
     const url = request.nextUrl.clone();
     url.hostname = hostname.replace(/^esports\./, "nightmare.");
+    url.port = "";
     return NextResponse.redirect(url, 301);
   }
 
